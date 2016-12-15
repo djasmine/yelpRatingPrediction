@@ -1,0 +1,22 @@
+from __future__ import print_function
+import json
+import re
+import string
+import sys
+
+if __name__ == '__main__':
+    with open(sys.argv[1], 'w') as intermediate_file:
+        with open(sys.argv[2]) as json_data:
+            for index,line in enumerate(json_data):
+            #data.append(json.loads(line))
+                record = json.loads(line)
+                if record["stars"] == sys.argv[3]:
+                    text = record["text"]
+                    words = text.split()
+                    for word in words:
+                        word = re.sub(r'\W+', '', word)
+                        print(word.encode('utf-8'), file=intermediate_file)
+
+
+
+
